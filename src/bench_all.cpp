@@ -5,7 +5,7 @@
 using namespace std;
 using namespace std::chrono;
 
-#define SIZE 301
+#define SIZE 320
 #define N_REPEATS 5
 
 int main() {

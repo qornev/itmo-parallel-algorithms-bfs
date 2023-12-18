@@ -1,0 +1,36 @@
+Start initializing graph with sides 320
+Graph initialization finished
+
+Start sequential algorithm bench
+1 attempt
+Distance: 32767999.000000
+Time: 14001 millisec
+2 attempt
+Distance: 32767999.000000
+Time: 14221 millisec
+3 attempt
+Distance: 32767999.000000
+Time: 14350 millisec
+4 attempt
+Distance: 32767999.000000
+Time: 14362 millisec
+5 attempt
+Distance: 32767999.000000
+Time: 14459 millisec
+
+Start parallel algorithm bench
+1 attempt
+Distance: 32767999.000000
+Time: 6300 millisec
+2 attempt
+Distance: 32767999.000000
+Time: 6215 millisec
+3 attempt
+Distance: 32767999.000000
+Time: 6291 millisec
+4 attempt
+Distance: 32767999.000000
+Time: 6233 millisec
+5 attempt
+Distance: 32767999.000000
+Time: 6250 millisec

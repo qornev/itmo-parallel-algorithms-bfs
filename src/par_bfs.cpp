@@ -29,14 +29,14 @@ void block_construct_sublist(Graph& graph, std::list<Vertex*>::iterator start, s
     }
 }
 
-double par_bfs(Graph graph, Vertex* start, Array3D<bool>& visited, Array3D<Vertex*>& parent) {
+double par_bfs(Graph& graph, Vertex* start, Array3D<bool>& visited, Array3D<Vertex*>& parent) {
     int n_workers = __cilkrts_get_nworkers();
     cilk::opadd_reducer<double> distance(0);
     std::list<Vertex*> frontier;
 
     frontier.push_back(start);
     while (!frontier.empty()) {
-        int block_size = 8 * n_workers;
+        int block_size = 32 * n_workers;
         int n_blocks = ceil(frontier.size() / (1.0 * block_size));
 
         std::list<Vertex*>::iterator it = frontier.begin();

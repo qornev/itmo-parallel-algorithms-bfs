@@ -1,6 +1,6 @@
 #include "bfs.hpp"
 
-double seq_bfs(Graph graph, Vertex* start, Array3D<bool>& visited) {
+double seq_bfs(Graph& graph, Vertex* start, Array3D<bool>& visited) {
     double distance = 0;
     std::list<Vertex*> queue;
 
