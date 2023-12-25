@@ -5,7 +5,7 @@
 using namespace std;
 using namespace std::chrono;
 
-#define SIZE 320
+#define SIZE 500
 #define N_REPEATS 5
 
 int main() {
@@ -13,11 +13,11 @@ int main() {
     Graph graph = init_graph(SIZE);
     cout << "Graph initialization finished" << endl << endl;
 
-    Vertex* start = new Vertex(0, 0, 0);
+    Vertex start(0, 0, 0);
     Array3D<bool> visited(SIZE);
     visited.init(false);
-    Array3D<Vertex*> parent(SIZE);
-    parent.init(nullptr);
+    Array3D<size_t> parent(SIZE);
+    parent.init(SIZE_T_MAX);
 
     cout << "Start sequential algorithm bench" << endl;
     for (int i = 0; i < N_REPEATS; i++) {
@@ -50,7 +50,8 @@ int main() {
         cout << fixed << "Distance: " << distance << endl;
         cout << "Time: " << duration.count() << " millisec" << endl;
         visited.init(false);
-        parent.init(nullptr);
+        parent.init(SIZE_T_MAX);
     }
     return 0;
 }
+

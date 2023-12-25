@@ -1,7 +1,9 @@
 #include <iostream>
 #include "graph.hpp"
 
-Vertex::Vertex(int x, int y, int z) : x(x), y(y), z(z) {}
+Vertex::Vertex() : x(0), y(0), z(0) {}
+
+Vertex::Vertex(unsigned short x, unsigned short y, unsigned short z) : x(x), y(y), z(z) {}
 
 double Vertex::operator-(const Vertex& u) {
     double x_diff = 1.0 * pow(x - u.x, 2);
@@ -10,20 +12,16 @@ double Vertex::operator-(const Vertex& u) {
     return sqrt(x_diff + y_diff + z_diff);
 }
 
+size_t Vertex::flatten_index(size_t side) {
+    return this->x + this->y * side + this->z * side * side;
+}
+
 std::ostream& operator<<(std::ostream& out, Vertex& v) {
     std::cout << '(' << v.x << ',' << v.y << ',' << v.z << ')';
     return out;
 }
 
 Graph init_graph(size_t side) {
-    Array3D<Vertex*> vertices(side);
-    for (int i = 0; i < side; i++)
-        for (int j = 0; j < side; j++)
-            for (int k = 0; k < side; k++) {
-                Vertex v(i, j, k);
-                vertices[v] = new Vertex(i, j, k);
-            }
-
     Graph graph(side);
     for (int i = 0; i < side; i++)
         for (int j = 0; j < side; j++)
@@ -31,16 +29,17 @@ Graph init_graph(size_t side) {
                 Vertex v(i, j, k);
                 if (i + 1 < side) {
                     Vertex u(i + 1, j, k);
-                    graph[v].push_back(vertices[u]);
+                    graph.add_edge(v, u);
                 }
                 if (j + 1 < side) {
                     Vertex u(i, j + 1, k);
-                    graph[v].push_back(vertices[u]);
+                    graph.add_edge(v, u);
                 }
                 if (k + 1 < side) {
                     Vertex u(i, j, k + 1);
-                    graph[v].push_back(vertices[u]);
+                    graph.add_edge(v, u);
                 }
             }
     return graph;
 }
+
