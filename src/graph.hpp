@@ -8,7 +8,6 @@ class Vertex {
     unsigned short x, y, z;
     Vertex();
     Vertex(unsigned short x, unsigned short y, unsigned short z);
-    double operator-(const Vertex& right);
     size_t flatten_index(size_t side);
 
     friend std::ostream& operator<<(std::ostream& out, Vertex& v);
@@ -46,44 +45,14 @@ class Graph {
     Vertex* data;
     bool* mask;
 
-    size_t map_indexes(Vertex v) {
-        return 3 * (v.flatten_index(side));
-    }
+    size_t map_indexes(Vertex v);
   public:
     size_t side;
 
-    Graph(size_t side) {
-        this->side = side;
-        data = new Vertex[3*side*side*side]{};
-        mask = new bool[3*side*side*side]{};
-    }
-
-    std::list<Vertex> operator[](Vertex v) {
-        size_t idx = map_indexes(v);
-        std::list<Vertex> adj_vertex;
-        for (int i = 0; i < 3; i++) {
-            if (mask[idx + i])
-                adj_vertex.push_back(data[idx + i]);
-        }
-        return adj_vertex;
-    }
-
-    void add_edge(Vertex v, Vertex u) {
-        size_t idx = map_indexes(v);
-        bool is_inserted = false;
-        for (int i = 0; i < 3; i++) {
-            if (!mask[idx + i]) {
-                data[idx + i] = u;
-                mask[idx + i] = true;
-                is_inserted = true;
-                break;
-            }
-        }
-        if (!is_inserted) throw 20;
-    }
+    Graph(size_t side);
+    std::list<Vertex> operator[](Vertex v);
+    void add_edge(Vertex v, Vertex u);
 };
-
-Graph init_graph(size_t side);
 
 #endif
 

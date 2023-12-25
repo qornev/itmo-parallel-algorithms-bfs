@@ -1,0 +1,24 @@
+Start initializing graph with sides 500
+Graph initialization finished
+
+Start algorithm bench
+1 attempt
+Time: 23925 millisec
+All distances are correct
+
+2 attempt
+Time: 23742 millisec
+All distances are correct
+
+3 attempt
+Time: 23389 millisec
+All distances are correct
+
+4 attempt
+Time: 23453 millisec
+All distances are correct
+
+5 attempt
+Time: 23449 millisec
+All distances are correct
+

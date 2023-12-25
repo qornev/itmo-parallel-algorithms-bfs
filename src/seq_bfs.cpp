@@ -1,7 +1,6 @@
 #include "bfs.hpp"
 
-double seq_bfs(Graph& graph, Vertex& start, Array3D<bool>& visited) {
-    double distance = 0;
+void seq_bfs(Graph& graph, Vertex& start, Array3D<bool>& visited, Array3D<unsigned short>& distances) {
     std::list<Vertex> queue;
 
     queue.push_back(start);
@@ -13,10 +12,9 @@ double seq_bfs(Graph& graph, Vertex& start, Array3D<bool>& visited) {
             if (!visited[u]) {
                 queue.push_back(u);
                 visited[u] = true;
-                distance += u - v;
+                distances[u] = distances[v] + 1;
             }
         }
     }
-    return distance;
 }
 
